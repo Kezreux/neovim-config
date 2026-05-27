@@ -1,4 +1,9 @@
 # neovim-config
+Personal Neovim config
 
-Personal neovim setup
+## Installation
+
+`gh repo clone Kezreux/neovim-config ~/.config/nvim`
+`bash ~/.config/nvim/install.sh`
+
                 
