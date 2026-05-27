@@ -1,6 +1,6 @@
 
 function ColorMyPencils(color)
-	color = color or "rose-pine-moon"
+	color = color or "tokyonight-storm"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -9,24 +9,14 @@ end
 
 return {
 
-    {
-        "erikbackman/brightburn.vim",
-    },
+    { "erikbackman/brightburn.vim" },
 
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            ColorMyPencils()
-        end
-    },
     {
         "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
         config = function()
             require("gruvbox").setup({
-                terminal_colors = true,  
+                terminal_colors = true,
                 undercurl = true,
                 underline = false,
                 bold = true,
@@ -43,7 +33,7 @@ return {
                 invert_tabline = false,
                 invert_intend_guides = false,
                 inverse = true,
-                contrast = "", 
+                contrast = "",
                 palette_overrides = {},
                 overrides = {},
                 dim_inactive = false,
@@ -51,37 +41,37 @@ return {
             })
         end,
     },
-    {
-        "folke/tokyonight.nvim",
-        config = function()
-            require("tokyonight").setup({
-                style = "storm", 
-                transparent = true, 
-                terminal_colors = true, 
-                styles = {
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                    sidebars = "dark", 
-                    floats = "dark",
-                },
-            })
-        end
-    },
 
     {
         "rose-pine/neovim",
         name = "rose-pine",
         config = function()
-            require('rose-pine').setup({
+            require("rose-pine").setup({
                 disable_background = true,
                 styles = {
                     italic = false,
                 },
             })
-
-            ColorMyPencils();
-        end
+        end,
     },
 
-
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("tokyonight").setup({
+                style = "storm",
+                transparent = true,
+                terminal_colors = true,
+                styles = {
+                    comments = { italic = false },
+                    keywords = { italic = false },
+                    sidebars = "transparent",
+                    floats = "transparent",
+                },
+            })
+            ColorMyPencils()
+        end,
+    },
 }
