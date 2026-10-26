@@ -39,12 +39,12 @@ if [ "$STASHED" -eq 1 ]; then
     fi
 fi
 
-# 4. Sync plugins headlessly
+# 4. Install plugins at the versions pinned in lazy-lock.json, then parsers/tools
 if command -v nvim >/dev/null 2>&1; then
-    say "Syncing plugins"
-    nvim --headless "+Lazy! sync" +qa
-    say "Updating treesitter parsers"
-    nvim --headless "+TSUpdateSync" +qa || warn "TSUpdateSync failed — parsers will update lazily"
+    say "Restoring plugins from lazy-lock.json"
+    nvim --headless "+Lazy! restore" +qa
+    say "Updating treesitter parsers and Mason tools"
+    nvim --headless "+luafile $CONFIG_DIR/scripts/bootstrap.lua" +qa || warn "Pre-install incomplete — will finish on next launch"
 else
     warn "nvim not installed — skipping plugin sync"
 fi

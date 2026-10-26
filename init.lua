@@ -1,2 +1,1 @@
-
-require("kezreux")
+require("config.lazy")
