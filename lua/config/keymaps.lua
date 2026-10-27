@@ -14,3 +14,11 @@ vim.keymap.set("n", "<leader>h", function()
     keys = { q = "close" },
   })
 end, { desc = "Cheatsheet" })
+
+-- Space pv: swap the current window for neo-tree, revealing the current file
+vim.keymap.set("n", "<leader>pv", "<cmd>Neotree position=current reveal<cr>", { desc = "Project View (neo-tree)" })
+
+-- Ctrl-Z to undo (overrides terminal-suspend inside nvim; use :suspend if needed)
+vim.keymap.set("n", "<C-z>", "u", { desc = "Undo" })
+vim.keymap.set("i", "<C-z>", "<C-o>u", { desc = "Undo" })
+vim.keymap.set("v", "<C-z>", "<Esc>u", { desc = "Undo" })
