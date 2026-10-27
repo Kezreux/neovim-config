@@ -56,19 +56,19 @@ fi
 say "Installing system dependencies"
 if have apt-get; then
     $SUDO apt-get update
-    $SUDO apt-get install -y git curl unzip tar gzip build-essential ripgrep fd-find \
+    $SUDO apt-get install -y git curl unzip tar gzip build-essential ripgrep fd-find fzf \
         nodejs npm python3 python3-venv xclip
     # Debian names the binary fdfind
     if have fdfind && ! have fd; then ln -sf "$(command -v fdfind)" "$LOCAL_BIN/fd"; fi
 elif have dnf; then
-    $SUDO dnf install -y git curl unzip tar gzip gcc gcc-c++ make ripgrep fd-find \
+    $SUDO dnf install -y git curl unzip tar gzip gcc gcc-c++ make ripgrep fd-find fzf \
         nodejs npm python3 xclip
 elif have pacman; then
-    $SUDO pacman -S --needed --noconfirm git curl unzip tar gzip base-devel ripgrep fd \
+    $SUDO pacman -S --needed --noconfirm git curl unzip tar gzip base-devel ripgrep fd fzf \
         nodejs npm python neovim tree-sitter-cli lazygit xclip
 else
     warn "No supported package manager (apt/dnf/pacman). Install manually:"
-    warn "  git curl unzip tar gcc make ripgrep fd nodejs npm python3"
+    warn "  git curl unzip tar gcc make ripgrep fd fzf nodejs npm python3"
 fi
 
 # 3. Neovim >= $MIN_NVIM (install official release to ~/.local if needed)
